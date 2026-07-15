@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help &amp; Heal Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2B2470;
+    --teal:#1F9E9E;
+    --sand:#F7F1E8;
+    --coral:#E85D75;
+    --leaf:#4A9B6E;
+    --charcoal:#232323;
+    --paper:#FFFDF9;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--sand);
+    color:var(--charcoal);
+    font-family:'Public Sans', sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    color:var(--ink);
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  /* ---------- WAVE DIVIDER (signature element) ---------- */
+  .wave-divider{
+    width:100%;
+    height:64px;
+    display:block;
+  }
+  .wave-divider path{
+    fill:none;
+    stroke:var(--teal);
+    stroke-width:2.5;
+    stroke-linecap:round;
+    opacity:0.55;
+  }
+  .wave-divider path.w2{ stroke:var(--ink); opacity:0.25; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,241,232,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(43,36,112,0.1);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem;
+    color:var(--ink);
+  }
+  .brand img{ width:36px; height:36px; border-radius:50%; }
+  nav ul{ list-style:none; display:flex; gap:22px; }
+  nav a{ text-decoration:none; font-size:0.92rem; font-weight:600; color:var(--ink); opacity:0.75; }
+  nav a:hover{ opacity:1; }
+  @media (max-width:720px){ nav ul{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    max-width:1100px; margin:0 auto;
+    padding:64px 24px 40px;
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:40px;
+    align-items:center;
+  }
+  @media (max-width:820px){ .hero{ grid-template-columns:1fr; padding-top:40px; } }
+
+  .eyebrow{
+    font-family:'Public Sans', sans-serif;
+    font-size:0.78rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--teal); margin-bottom:14px; display:block;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    line-height:1.05;
+    margin-bottom:20px;
+  }
+  .hero h1 em{ color:var(--coral); font-style:normal; }
+  .hero p.lede{
+    font-size:1.05rem; color:#4a4a4a; max-width:46ch; margin-bottom:28px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block; padding:12px 22px; border-radius:100px;
+    font-weight:700; font-size:0.92rem; text-decoration:none;
+    transition:transform 0.15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--ink); color:var(--sand); }
+  .btn-ghost{ border:1.5px solid var(--ink); color:var(--ink); }
+
+  /* stat block */
+  .stat-card{
+    background:var(--paper);
+    border-radius:20px;
+    padding:32px 28px;
+    box-shadow:0 10px 40px -18px rgba(43,36,112,0.35);
+    border:1px solid rgba(43,36,112,0.08);
+    text-align:center;
+  }
+  .stat-number{
+    font-family:'Fraunces', serif; font-weight:700;
+    font-size:clamp(2.6rem, 6vw, 3.6rem);
+    color:var(--teal);
+    line-height:1;
+  }
+  .stat-number span{ color:var(--ink); }
+  .stat-label{
+    margin-top:8px; font-size:0.85rem; letter-spacing:0.04em; color:#666; text-transform:uppercase; font-weight:600;
+  }
+  .stat-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px;
+  }
+  .stat-mini{ text-align:left; }
+  .stat-mini b{ display:block; font-family:'Fraunces', serif; font-size:1.4rem; color:var(--ink); }
+  .stat-mini span{ font-size:0.78rem; color:#777; }
+
+  /* ---------- SECTION WRAP ---------- */
+  section{ max-width:1100px; margin:0 auto; padding:20px 24px 70px; }
+  .section-head{ max-width:60ch; margin-bottom:40px; }
+  .section-head h2{ font-size:clamp(1.6rem, 3.5vw, 2.2rem); margin-bottom:12px; }
+  .section-head p{ color:#555; font-size:1rem; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  }
+  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+  .pillar{
+    background:var(--paper); border-radius:16px; padding:26px 22px;
+    border-top:4px solid var(--teal);
+  }
+  .pillar:nth-child(2){ border-top-color:var(--coral); }
+  .pillar:nth-child(3){ border-top-color:var(--leaf); }
+  .pillar h3{ font-size:1.15rem; margin-bottom:8px; }
+  .pillar p{ font-size:0.92rem; color:#555; }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{
+    position:relative;
+    padding-left:28px;
+    border-left:2.5px solid rgba(31,158,158,0.3);
+  }
+  .tl-item{
+    position:relative;
+    padding-bottom:44px;
+  }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-dot{
+    position:absolute; left:-35.5px; top:4px;
+    width:14px; height:14px; border-radius:50%;
+    background:var(--teal); border:3px solid var(--sand);
+    box-shadow:0 0 0 2px rgba(31,158,158,0.3);
+  }
+  .tl-item.coral .tl-dot{ background:var(--coral); box-shadow:0 0 0 2px rgba(232,93,117,0.3); }
+  .tl-item.leaf .tl-dot{ background:var(--leaf); box-shadow:0 0 0 2px rgba(74,155,110,0.3); }
+  .tl-date{
+    font-size:0.78rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--teal); margin-bottom:6px; display:block;
+  }
+  .tl-item.coral .tl-date{ color:var(--coral); }
+  .tl-item.leaf .tl-date{ color:var(--leaf); }
+  .tl-card{
+    background:var(--paper); border-radius:14px; padding:22px 24px;
+    border:1px solid rgba(43,36,112,0.08);
+  }
+  .tl-card h3{ font-size:1.2rem; margin-bottom:6px; }
+  .tl-card p{ font-size:0.92rem; color:#555; margin-bottom:10px; }
+  .tl-meta{
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .chip{
+    font-size:0.75rem; font-weight:600; padding:4px 11px; border-radius:100px;
+    background:rgba(31,158,158,0.12); color:var(--teal);
+  }
+  .chip.partner{ background:rgba(232,93,117,0.12); color:var(--coral); }
+  .chip.num{ background:rgba(43,36,112,0.08); color:var(--ink); }
+  .sub-events{ margin-top:14px; border-top:1px dashed rgba(43,36,112,0.15); padding-top:12px; }
+  .sub-events div{ font-size:0.86rem; padding:3px 0; color:#444; }
+  .sub-events b{ color:var(--ink); }
+
+  /* ---------- PHOTO GALLERY ---------- */
+  .gallery{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:8px;
+  }
+  @media (max-width:520px){ .gallery{ grid-template-columns:repeat(2, 1fr); } }
+  .gallery img{
+    width:100%; height:130px; object-fit:cover;
+    border-radius:10px;
+    cursor:pointer;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .gallery img:hover{ transform:scale(1.04); box-shadow:0 8px 20px -8px rgba(43,36,112,0.4); }
+  .gallery-label{
+    font-size:0.75rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+    color:#888; margin:14px 0 6px;
+  }
+
+  /* ---------- IMPACT NUMBERS BAR ---------- */
+  .impact-bar{
+    background:var(--ink); color:var(--sand);
+    padding:50px 24px;
+  }
+  .impact-inner{
+    max-width:1100px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center;
+  }
+  @media (max-width:760px){ .impact-inner{ grid-template-columns:1fr 1fr; } }
+  .impact-inner b{
+    font-family:'Fraunces', serif; font-size:2.1rem; display:block; color:var(--teal);
+  }
+  .impact-inner span{ font-size:0.8rem; opacity:0.8; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-card{
+    background:var(--paper); border-radius:20px; padding:38px 32px;
+    display:grid; grid-template-columns:1fr 1fr; gap:30px;
+    border:1px solid rgba(43,36,112,0.08);
+  }
+  @media (max-width:720px){ .contact-card{ grid-template-columns:1fr; } }
+  .contact-card h3{ font-size:1.3rem; margin-bottom:10px; }
+  .contact-list{ list-style:none; margin-top:14px; }
+  .contact-list li{ font-size:0.94rem; padding:6px 0; }
+  .contact-list b{ color:var(--ink); }
+
+  footer{
+    text-align:center; padding:34px 24px; font-size:0.82rem; color:#777;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">
+      <img src="logo.jpg" alt="Help & Heal Foundation logo">
+      Help &amp; Heal Foundation
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <span class="eyebrow">Karachi, Pakistan · Est. 25 Sept 2025</span>
+    <h1>Empowering youth. Healing communities. <em>Protecting the planet.</em></h1>
+    <p class="lede">A youth-led foundation running free medical camps, awareness campaigns, and relief drives across Karachi and Sindh — because healthcare is a right, not a privilege.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn btn-primary">See our work</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number" id="counter">0</div>
+    <div class="stat-label">Lives touched since launch</div>
+    <div class="stat-grid">
+      <div class="stat-mini"><b>7</b><span>Programs run</span></div>
+      <div class="stat-mini"><b>4</b><span>Medical camps</span></div>
+      <div class="stat-mini"><b>70+</b><span>Active volunteers</span></div>
+      <div class="stat-mini"><b>3</b><span>Partner NGOs</span></div>
+    </div>
+  </div>
+</div>
+
+<svg class="wave-divider" viewBox="0 0 1100 64" preserveAspectRatio="none">
+  <path class="w2" d="M0 40 Q 137 10, 275 40 T 550 40 T 825 40 T 1100 40"/>
+  <path d="M0 30 Q 137 55, 275 30 T 550 30 T 825 30 T 1100 30"/>
+</svg>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head">
+    <h2>Why we exist</h2>
+    <p>Help &amp; Heal Foundation was founded to close gaps that fall between the cracks — in healthcare access, youth opportunity, and environmental responsibility. Everything we run is grounded in three pillars.</p>
+  </div>
+  <div class="about-grid">
+    <div class="pillar">
+      <h3>Public Health</h3>
+      <p>Free medical camps, screenings, and awareness campaigns bringing basic healthcare to underserved neighborhoods.</p>
+    </div>
+    <div class="pillar">
+      <h3>Youth Empowerment</h3>
+      <p>Mobilizing young volunteers as speakers, organizers, and first responders in their own communities.</p>
+    </div>
+    <div class="pillar">
+      <h3>Climate &amp; Community</h3>
+      <p>Environmental action alongside social welfare — from coastal cleanups to seasonal relief drives.</p>
+    </div>
+  </div>
+</section>
+
+<svg class="wave-divider" viewBox="0 0 1100 64" preserveAspectRatio="none">
+  <path class="w2" d="M0 30 Q 137 55, 275 30 T 550 30 T 825 30 T 1100 30"/>
+  <path d="M0 40 Q 137 10, 275 40 T 550 40 T 825 40 T 1100 40"/>
+</svg>
+
+<!-- OUR WORK / TIMELINE -->
+<section id="work">
+  <div class="section-head">
+    <h2>Our work, in order</h2>
+    <p>A running record of every campaign since our founding — dates, numbers, and partners included.</p>
+  </div>
+
+  <div class="timeline">
+
+    <div class="tl-item coral">
+      <div class="tl-dot"></div>
+      <span class="tl-date">Oct 15 – 29, 2025</span>
+      <div class="tl-card">
+        <h3>Breast Cancer Awareness Campaign</h3>
+        <p>Seven awareness sessions held across universities, hospitals, and an online session, reaching students and the public with early-detection education.</p>
+        <div class="tl-meta">
+          <span class="chip num">7 sessions</span>
+          <span class="chip num">60–70 volunteers</span>
+          <span class="chip partner">Partnered: Hammad Foundation (Oct 18)</span>
+        </div>
+        <div class="sub-events">
+          <div><b>Oct 15</b> — Karachi University</div>
+          <div><b>Oct 16</b> — Liaquat National Hospital &amp; Medical College</div>
+          <div><b>Oct 18</b> — Hammad Foundation Medical Complex, Nazimabad, Karachi, 2–5 PM — co-hosted, speakers: Umaima Khan Turk &amp; Zurwah Hadia (Histopathology &amp; Biopsy Technologists) — awareness session, free counselling, pink ribbon art corner, pink facts challenge</div>
+          <div><b>Oct 21</b> — Liaquat National Hospital &amp; Medical College</div>
+          <div><b>Oct 24</b> — Liaquat National Hospital &amp; Medical College</div>
+          <div><b>Oct 25</b> — Online session, 11 AM – 1 PM — keynote speaker: Dr Farida Hussaini, Senior Lecturer, Department of Pathology (LNH&amp;MC)</div>
+          <div><b>Oct 29</b> — Liaquat National Hospital &amp; Medical College — "Role of MLTs in Early Detection of Breast Cancer"</div>
+        </div>
+        <div class="gallery-label">Photos — Karachi University session</div>
+        <div class="gallery">
+          <img src="images/bc-karachi-uni-1.jpg" alt="Volunteer at Karachi University breast cancer awareness session" loading="lazy">
+          <img src="images/bc-karachi-uni-2.jpg" alt="Writing messages on the Wall of Hope" loading="lazy">
+          <img src="images/bc-karachi-uni-3.jpg" alt="Volunteers speaking with students" loading="lazy">
+          <img src="images/bc-karachi-uni-4.jpg" alt="Volunteers reviewing awareness materials" loading="lazy">
+          <img src="images/bc-karachi-uni-5.jpg" alt="Attendee at the Karachi University session" loading="lazy">
+          <img src="images/bc-karachi-uni-6.jpg" alt="Foundation team at Karachi University" loading="lazy">
+        </div>
+        <div class="gallery-label">Photos — LNH session, Oct 29 (Role of MLTs in Early Detection)</div>
+        <div class="gallery">
+          <img src="images/bc-lnh-oct29.jpg" alt="Breast cancer session at Liaquat National Hospital, Role of MLTs in Early Detection" loading="lazy">
+        </div>
+        <div class="gallery-label">Photos — Hammad Foundation session, Oct 18</div>
+        <div class="gallery">
+          <img src="images/bc-hammad-1.jpg" alt="Breast cancer awareness session with Hammad Foundation" loading="lazy">
+          <img src="images/bc-hammad-2.jpg" alt="Speakers at the Hammad Foundation breast cancer session" loading="lazy">
+          <img src="images/bc-hammad-3.jpg" alt="Attendee with awareness reminder card" loading="lazy">
+          <img src="images/bc-hammad-4.jpg" alt="Wall of Hope at the Hammad Foundation session" loading="lazy">
+          <img src="images/bc-hammad-5.jpg" alt="Attendees at the awareness session" loading="lazy">
+          <img src="images/bc-hammad-6.jpg" alt="Speakers presenting at Hammad Foundation session" loading="lazy">
+          <img src="images/bc-poster-hammad-oct18.jpg" alt="Event poster for Hammad Foundation breast cancer session" loading="lazy">
+        </div>
+        <div class="gallery-label">Photos — Online session, Oct 25</div>
+        <div class="gallery">
+          <img src="images/bc-poster-online-oct25.jpg" alt="Event poster for online breast cancer awareness session with keynote speaker Dr Farida Hussaini" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <span class="tl-date">Nov 2025 – Apr 2026</span>
+      <div class="tl-card">
+        <h3>Free Medical Camps</h3>
+        <p>Four free medical camps offering checkups, diabetes screening, medicines, and dental care to underserved neighborhoods across Karachi and Sindh.</p>
+        <div class="tl-meta">
+          <span class="chip num">430+ patients treated</span>
+          <span class="chip num">4 camps</span>
+        </div>
+        <div class="sub-events">
+          <div><b>29 Nov 2025</b> — Shah Faisal Colony, Karachi — ~150 patients</div>
+          <div><b>3 Jan 2026</b> — Korangi Sector 33D — ~120 patients</div>
+          <div><b>24 Jan 2026</b> — Thatta, Sindh (combined with Winter Clothing Drive) — ~90 patients</div>
+          <div><b>25 Apr 2026</b> — Malir 15, Muhammadi Dera Society — ~70 patients</div>
+        </div>
+        <div class="gallery-label">Photos — Shah Faisal Colony camp, 29 Nov 2025</div>
+        <div class="gallery">
+          <img src="images/mc-shahfaisal-1.jpg" alt="Volunteer doctors at Shah Faisal Colony medical camp" loading="lazy">
+          <img src="images/mc-shahfaisal-2.jpg" alt="Team of doctors at the free medical camp" loading="lazy">
+          <img src="images/mc-shahfaisal-3.jpg" alt="Full volunteer team at Shah Faisal Colony camp" loading="lazy">
+        </div>
+        <div class="gallery-label">Photos — Korangi Sector 33D camp, 3 Jan 2026</div>
+        <div class="gallery">
+          <img src="images/mc-korangi-1.jpg" alt="Health checkup at Korangi medical camp" loading="lazy">
+          <img src="images/mc-korangi-2.jpg" alt="Doctor examining a child at the camp" loading="lazy">
+          <img src="images/mc-korangi-3.jpg" alt="Help and Heal Foundation banner at Korangi camp" loading="lazy">
+          <img src="images/mc-korangi-4.jpg" alt="Families waiting for checkup at the camp" loading="lazy">
+          <img src="images/mc-korangi-5.jpg" alt="Volunteers distributing free medicines" loading="lazy">
+          <img src="images/mc-korangi-6.jpg" alt="Doctor checking blood pressure of a patient" loading="lazy">
+        </div>
+        <div class="gallery-label">Photos — Malir 15 camp, 25 Apr 2026</div>
+        <div class="gallery">
+          <img src="images/mc-malir-1.jpg" alt="Doctor checking blood pressure at Malir medical camp" loading="lazy">
+          <img src="images/mc-malir-2.jpg" alt="Volunteers attending to an elderly patient" loading="lazy">
+          <img src="images/mc-malir-3.jpg" alt="Volunteer providing free medicines" loading="lazy">
+          <img src="images/mc-malir-4.jpg" alt="Team of doctors at the health checkup camp" loading="lazy">
+          <img src="images/mc-malir-5.jpg" alt="Doctors consulting a patient at the camp" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item leaf">
+      <div class="tl-dot"></div>
+      <span class="tl-date">Around Ramadan, March 2026</span>
+      <div class="tl-card">
+        <h3>Ramzan Relief &amp; Orphanage Drives</h3>
+        <p>Seasonal relief for families and an Iftar &amp; Eid gift visit to children at a local orphanage.</p>
+        <div class="tl-meta">
+          <span class="chip num">50+ families (ration)</span>
+          <span class="chip num">500+ people (iftar)</span>
+          <span class="chip partner">Bachat Camp funded with Hammad Foundation</span>
+        </div>
+        <div class="sub-events">
+          <div><b>Ration Drive</b> — 50+ families given full ration packages</div>
+          <div><b>Iftar Drives</b> — 2 events, 500+ people served combined</div>
+          <div><b>Orphanage Home Visit</b> — Iftar meals &amp; Eid gifts, 10-person volunteer team</div>
+          <div><b>Ramadan Bachat Camp, Day 19</b> — funded by Help &amp; Heal, hosted with Hammad Foundation</div>
+        </div>
+        <div class="gallery-label">Photos — Iftar Drives</div>
+        <div class="gallery">
+          <img src="images/ramzan-iftar-1.jpg" alt="Community iftar drive, rows of people breaking their fast" loading="lazy">
+          <img src="images/ramzan-iftar-2.jpg" alt="Volunteer team at the iftar drive" loading="lazy">
+          <img src="images/ramzan-iftar-3.jpg" alt="Volunteer team at the iftar drive event" loading="lazy">
+          <img src="images/ramzan-iftar-4.jpg" alt="Community members receiving iftar meals" loading="lazy">
+          <img src="images/ramzan-iftar-5.jpg" alt="Large iftar gathering organized by the foundation" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <span class="tl-date">6 May 2026</span>
+      <div class="tl-card">
+        <h3>World Thalassemia Day</h3>
+        <p>Awareness session, interactive workshop, and blood donation drive at Kashif Iqbal Thalassemia Care Centre — with free CBC screening for every participant.</p>
+        <div class="tl-meta">
+          <span class="chip num">35 participants</span>
+          <span class="chip num">Free CBC screening</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item leaf">
+      <div class="tl-dot"></div>
+      <span class="tl-date">Sea View Beach, Karachi</span>
+      <div class="tl-card">
+        <h3>Beach Cleanup Drive</h3>
+        <p>A large-scale coastal cleanup at Sea View Beach, organized by Hammad Foundation with Help &amp; Heal Foundation as collaborating partner.</p>
+        <div class="tl-meta">
+          <span class="chip num">~3,000 participants</span>
+          <span class="chip partner">Partnered: Hammad Foundation (organizer)</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- IMPACT BAR -->
+<div class="impact-bar">
+  <div class="impact-inner">
+    <div><b>430+</b><span>Patients treated</span></div>
+    <div><b>550+</b><span>Families &amp; individuals fed</span></div>
+    <div><b>3,000+</b><span>Beach cleanup participants</span></div>
+    <div><b>35</b><span>Thalassemia Day attendees</span></div>
+  </div>
+</div>
+
+<svg class="wave-divider" viewBox="0 0 1100 64" preserveAspectRatio="none">
+  <path class="w2" d="M0 40 Q 137 10, 275 40 T 550 40 T 825 40 T 1100 40"/>
+  <path d="M0 30 Q 137 55, 275 30 T 550 30 T 825 30 T 1100 30"/>
+</svg>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-head">
+    <h2>Work with us</h2>
+    <p>Whether you're a partner NGO, a donor, or a volunteer — here's how to reach Help &amp; Heal Foundation.</p>
+  </div>
+  <div class="contact-card">
+    <div>
+      <h3>Get in touch</h3>
+      <ul class="contact-list">
+        <li><b>Founder:</b> Umaima Maryam</li>
+        <li><b>Founded:</b> 25 September 2025</li>
+        <li><b>Based in:</b> Karachi, Pakistan</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Support our work</h3>
+      <ul class="contact-list">
+        <li><b>Donations via Sadapay:</b> Umaima Maryam</li>
+        <li><b>Contact:</b> +92 334 2638091</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Help &amp; Heal Foundation — Empowering youth, public health, and climate change.
+</footer>
+
+<script>
+  // Animate hero counter on load
+  const target = 4015;
+  const el = document.getElementById('counter');
+  let current = 0;
+  const duration = 1400;
+  const stepTime = 16;
+  const steps = duration / stepTime;
+  const increment = target / steps;
+  const tick = () => {
+    current += increment;
+    if(current >= target){
+      el.textContent = target.toLocaleString() + '+';
+    } else {
+      el.textContent = Math.floor(current).toLocaleString();
+      requestAnimationFrame(() => setTimeout(tick, stepTime));
+    }
+  };
+  tick();
+</script>
+
+</body>
+</html>
